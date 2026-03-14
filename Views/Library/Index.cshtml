@@ -1,0 +1,117 @@
+﻿@model List<BookLibrary.Models.Book>
+
+<div class="library-header">
+    <div class="logo-title-wrapper">
+        <img src="/NewFolder2/Library-photo.jpeg" alt="Library Logo" class="library-logo" />
+        <div>
+            <h1>Book Library</h1>
+            <p>Discover timeless stories from Turkish and World literature</p>
+        </div>
+    </div>
+</div>
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #f2e3d5;
+        color: #3e2723;
+    }
+
+    h1, h2, h3 {
+        color: #2d1b12;
+    }
+
+    .book-card {
+        background: white;
+        border-radius: 10px;
+        padding: 10px;
+    }
+    .library-header {
+        margin-bottom: 40px;
+        padding: 30px;
+        border-radius: 20px;
+        background: linear-gradient(135deg, #6f4e37, #3e2723);
+    }
+
+    .logo-title-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .library-logo {
+        width: 90px;
+        height: 90px;
+        object-fit: contain;
+        border-radius: 50%;
+        background: white;
+        padding: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.20);
+    }
+
+    .library-header h1 {
+        margin: 0;
+        font-size: 42px;
+        color: white;
+        letter-spacing: 1px;
+    }
+
+    .library-header p {
+        margin-top: 8px;
+        margin-bottom: 0;
+        font-size: 17px;
+        color: #e2e8f0;
+    }
+
+    @@media (max-width: 768px) {
+        .logo-title-wrapper {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .library-header h1 {
+            font-size: 32px;
+        }
+    }
+</style>
+<h2> Foreign Books</h2>
+
+<div style="display:flex; flex-wrap:wrap; gap:20px;">
+
+    @foreach (var book in Model.Where(b =>
+    b.Director != "Orhan Pamuk" &&
+    b.Director != "İhsan Oktay Anar" &&
+    b.Director != "Yusuf Atılgan" &&
+    b.Director != "Ahmet Hamdi Tanpınar"))
+    {
+        <div style="width:200px;border:1px solid #ccc;padding:10px;border-radius:8px;">
+            <img src="@book.ImageUrl" width="180" />
+            <h3>@book.Title</h3>
+            <p>@book.Director</p>
+            <p>Rating: @string.Join("", book.Stars)</p>
+            <p>Price: $@book.Price</p>
+        </div>
+    }
+
+</div>
+
+
+<h2 style="margin-top:40px;"> Turkish Books</h2>
+
+<div style="display:flex; flex-wrap:wrap; gap:20px;">
+
+    @foreach (var book in Model.Where(b =>
+    b.Director == "Orhan Pamuk" ||
+    b.Director == "İhsan Oktay Anar" ||
+    b.Director == "Yusuf Atılgan" ||
+    b.Director == "Ahmet Hamdi Tanpınar"))
+    {
+        <div style="width:200px;border:1px solid #ccc;padding:10px;border-radius:8px;">
+            <img src="@book.ImageUrl" width="180" />
+            <h3>@book.Title</h3>
+            <p>@book.Director</p>
+            <p>Rating: @string.Join("", book.Stars)</p>
+            <p>Price: $@book.Price</p>
+        </div>
+    }
+
+</div>

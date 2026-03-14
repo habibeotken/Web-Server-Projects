@@ -1,0 +1,12 @@
+# Derleme dosyaları
+bin/
+obj/
+
+# Visual Studio Code ayarları
+.vscode/
+
+# Diğer geçici dosyalar
+*.user
+*.suo
+*.pdb
+*.dll
